@@ -27,17 +27,16 @@ coordinates = []
 # for each line, append that line to coordinates, while making
 # each piece of elevation in that line into a 'string'
 # this allows us to preserve the order of the lists so that we can reconstruct them later
-with open(file_small) as file: 
+with open(file_large) as file: 
     for line in file.readlines():
         coordinates.append(line.split())
     # print(len(coordinates))
     # print(len(coordinates[0]))
 
-print(coordinates[1][8])
+# print(coordinates[1][0])
 
-for x in range(9):
-        for y in range(9):
-            print(x,y, )
+# print(coordinates)
+            
 
 
 
@@ -51,10 +50,10 @@ min_el = int(min(map(min, coordinates)))
 max_el = int(max(map(max, coordinates)))
 # print(max_el)
 
-minmax_range = int(max_el - min_el)
+minmax_range = (max_el) - (min_el)
 # print(minmax_range)
 
-elevation = 4713
+# elevation = 4713
 # print(coord)
 
 
@@ -63,14 +62,16 @@ elevation = 4713
 
 # takes in an element from the list of lists, prints out the element in RGB format
 def grayscale(elevation):
-    diff = (elevation - min_el)
+    int_elevation = int(elevation)
+    diff = (int_elevation - min_el)
     # print(diff)
     percent_of_range = (diff/minmax_range)
     # print(percent_of_range)
     grayscale_value = (percent_of_range * 255)
     # print(grayscale_value)
     render_pixel = RGB(grayscale_value)
-    print(render_pixel)
+    # print(render_pixel)
+    return render_pixel
 
 
 # changes the calculation from the grayscale function to RGB(X,X,X) format
@@ -79,20 +80,22 @@ def RGB(grayscale_value):
 
 
 
-grayscale(elevation)
+# grayscale(elevation)
 
-im = Image.new('RGB', (600, 600))
-for x in range(600):
-    for y in range(600):
-        im.putpixel((x, y), render_pixel)
-im.save('elevation_small.png')   
+im = Image.new('RGB', (1201, 1201))
+for row in coordinates:
+        for elevation in row:   
+            im.putpixel((row.index(elevation), coordinates.index(row)), grayscale(elevation))
+im.save('elevation_large.png')   
 print(im)
 
+# for x in range(coordinates[0]):
+#     for y in range(coordinates[1]): 
 
 
 ## Automate the Boring Stuff test code for .putpixel
-im = Image.new('RGB', (100, 100))
-for x in range(100):
-    for y in range(50,100):
-        im.putpixel((x,y), ImageColor.getcolor('darkgray', 'RGB'))
-im.save('putPixel.png')
+# im = Image.new('RGB', (100, 100))
+# for x in range(100):
+#     for y in range(50,100):
+#         im.putpixel((x,y), ImageColor.getcolor('darkgray', 'RGB'))
+# im.save('putPixel.png')
