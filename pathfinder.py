@@ -27,7 +27,7 @@ coordinates = []
 # for each line, append that line to coordinates, while making
 # each piece of elevation in that line into a 'string'
 # this allows us to preserve the order of the lists so that we can reconstruct them later
-with open(file_large) as file: 
+with open(file_small) as file: 
     for line in file.readlines():
         coordinates.append(line.split())
     # print(len(coordinates))
@@ -82,11 +82,11 @@ def RGB(grayscale_value):
 
 # grayscale(elevation)
 
-im = Image.new('RGB', (1201, 1201))
+im = Image.new('RGB', (600, 600))
 for row in coordinates:
         for elevation in row:   
             im.putpixel((row.index(elevation), coordinates.index(row)), grayscale(elevation))
-im.save('elevation_large.png')   
+im.save('elevation_small.png')   
 print(im)
 
 # for x in range(coordinates[0]):
