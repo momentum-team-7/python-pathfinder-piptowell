@@ -31,7 +31,11 @@ As you go through this assignment, use test-driven development as much as possib
 
 Read [the Mountain Paths PDF](MountainPaths.pdf) to get started.
 
-Read the data from `elevation_small.txt` into an appropriate data structure to get the elevation data. This file is made up of multiple lines. Each line has a list of numbers representing elevation in meters. The elevation is the maximum elevation for a 90m x 90m square.
+#1 
+Read the data from `elevation_small.txt` into an appropriate data structure to get the elevation data. (read the file and store it as a list of lists)
+CHECK OUT READLINES (similar to read() in the poem thing)
+-match each elevation to its coordinates
+ This file is made up of multiple lines. Each line has a list of numbers representing elevation in meters. The elevation is the maximum elevation for a 90m x 90m square.
 
 The numbers in this file are lined up like x-y coordinates. If the file contains the following:
 
